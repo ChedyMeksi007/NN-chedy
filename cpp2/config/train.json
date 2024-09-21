@@ -1,10 +1,10 @@
 {
-	"topology" : [784,392,191,64,10],
+	"topology" : [784,350,10],
 	"momentum" : 1.0,
 	"epoch" : 15,
 	"bias" : 1.0,
-	"learningRate" : 2,  
-	"trainingFile" : "/home/chedy/mpt-sose2024-mohamed-chedy-meksi/cpp2/data/mnist_train_data_64.csv",
+"learningRate" : 0.01,  
+"trainingFile" : "/home/chedy/mpt-sose2024-mohamed-chedy-meksi/cpp2/data/mnist_train_data_64.csv",
 	"labelsFile" : "/home/chedy/mpt-sose2024-mohamed-chedy-meksi/cpp2/data/mnist_train_labels_64.csv",
 	"weightsFile" : "/home/chedy/mpt-sose2024-mohamed-chedy-meksi/cpp2/data/weights_saved.json"
 }
