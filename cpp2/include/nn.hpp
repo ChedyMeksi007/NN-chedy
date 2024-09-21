@@ -134,7 +134,7 @@ class NN{
 		void loadWeights(string filename);
 
 		int topologySize;
-		int hiddenActivationType = SIGM;
+		int hiddenActivationType = RELU;
 		int outputActivationType = SIGM;
 		int costFunctionType = COST_MSE;
 

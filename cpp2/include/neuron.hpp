@@ -68,7 +68,7 @@ private:
     double value; ///< The input value of the neuron.
     double activatedValue; ///< The value after applying the activation function.
     double derivedValue; ///< The derivative value after applying the activation function.
-    int activationType = SIGM; ///< The type of activation function (default is SIGM).
+    int activationType = RELU; ///< The type of activation function (default is SIGM).
 };
 
 #endif // _NEURON_HPP_
