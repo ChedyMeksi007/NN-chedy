@@ -85,7 +85,7 @@ NN :: NN(
 
 	}
 
-
+	//init weights
 	for(int i = 0 ; i < topologySize -1; i++){
 		Matrix* weightMatrix = new Matrix(topology.at(i), topology.at(i+1), true);
 		this->weightMatrices.push_back(weightMatrix);
@@ -96,6 +96,8 @@ NN :: NN(
 		Matrix* biasMatrix = new Matrix(1,topology.at(i+1), true);
 		this->biasMatrices.push_back(biasMatrix);
 	}
+
+	//init errors
 	for(int i = 0; i < topology.at(topologySize - 1) ; i++){
 		errors.push_back(0.00);
 		derivedErrors.push_back(0.00);
