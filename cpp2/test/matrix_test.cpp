@@ -116,5 +116,55 @@ TEST (MatrixClass, Multiplication ){
 
 TEST (MatrixClass, Addition ) {
 
+	//same size Matrices
+	Matrix a{2,2,false};
+	Matrix b{2,2,false};
+	Matrix c{2,2,false};
+	Matrix e{2,2,false};
+
+
+	//
+	// |1 2| + |5 6| = |6   8|
+	// |3 4|   |7 8|   |10 12|
+	//
+	//
+	//
+
+
+	a.setValue(0,0,1);
+	a.setValue(0,1,2);
+	a.setValue(1,0,3);
+	a.setValue(1,1,4);
+
+	b.setValue(0,0,5);
+	b.setValue(0,1,6);
+	b.setValue(1,0,7);
+	b.setValue(1,1,8);
+
+	c.setValue(0,0,6);
+	c.setValue(0,1,8);
+	c.setValue(1,0,10);
+	c.setValue(1,1,12);
+
+	utils::Math::addMatrix(&a,&b,&e);
+
+
+	for(int row = 0; row<2 ; row++){
+		for(int col = 0; col<2; col++){
+			ASSERT_EQ(e.getValue(row,col),c.getValue(row,col));
+		}
+	}
+
+	//different order
+	Matrix e1{2,2,false};
+
+	utils::Math::addMatrix(&b,&a,&e1);
+
+
+	for(int row = 0; row<2 ; row++){
+		for(int col = 0; col<2; col++){
+			ASSERT_EQ(e1.getValue(row,col),c.getValue(row,col));
+		}
+	}
 
 }
