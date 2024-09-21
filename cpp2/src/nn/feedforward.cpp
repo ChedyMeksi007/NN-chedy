@@ -4,14 +4,22 @@
 void NN::feedForward() {
     Matrix *a; // Matrix of neurons to the left
     Matrix *b; // Matrix of weights to the right of the layer
-    Matrix *e; // Matrix of the biases
-    Matrix *c; // Matrix of neurons to the right
+    Matrix *c; // Matrix of neurons to the right before adding biases
+    Matrix *d; // Matrix of the biases
+    Matrix *e; // Matrix of neurons to the right after adding biases
 
     for (int i = 0; i < (this->topologySize - 1); i++) {
         a = this->getNeuronMatrix(i);
         b = this->getWeightMatrix(i);
-	e = this->getBiasMatrix(i);
-        c = new Matrix(
+	d = this->getBiasMatrix(i);
+
+	c = new Matrix(
+            a->getNumRows(),
+            b->getNumCols(),
+            false
+        );
+
+        e = new Matrix(
             a->getNumRows(),
             b->getNumCols(),
             false
@@ -22,10 +30,11 @@ void NN::feedForward() {
         }
 
         utils::Math::multiplyMatrix(a, b, c);
-	utils::Math::addMatrix(c,e,c);
+	utils::Math::addMatrix(c,d,e);
 
-        for (int c_index = 0; c_index < c->getNumCols(); c_index++) {
-            this->setNeuronValue(i + 1, c_index, c->getValue(0, c_index));
+
+	for (int c_index = 0; c_index < c->getNumCols(); c_index++) {
+            this->setNeuronValue(i + 1, c_index, e->getValue(0, c_index));
         }
 
     delete a;
