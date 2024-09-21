@@ -26,18 +26,30 @@ void NN :: setErrors(){
 	}
 }
 
-void NN :: setErrorsMSE() {
-	int outputLayerIndex = this-> layers.size() -1;
-	vector <Neuron *> outputNeurons = this->layers.at(outputLayerIndex)->getNeurons();
+void NN::setErrorsMSE() {
+    int outputLayerIndex = this->layers.size() - 1;
+    vector<Neuron*> outputNeurons = this->layers.at(outputLayerIndex)->getNeurons();
 
-	this-> error = 0.00;
+    this->error = 0.0f;
 
-	for(int i = 0; i < target.size(); i++){
-		double t = target.at(i);
-		double y = outputNeurons.at(i) -> getActivatedValue();
-		errors.at(i) = 0.5 * pow((abs(t-y)), 2);
-		derivedErrors.at(i) = y-t;
-		this->error += errors.at(i);
-	}
+    // Total number of output neurons, used for the MSE calculation
+    int numOutputs = target.size();
+
+    for (int i = 0; i < numOutputs; i++) {
+        double t = target.at(i);  // target value
+        double y = outputNeurons.at(i)->getActivatedValue();  // output of the neural network
+
+        // Error for the current output neuron
+        errors.at(i) = 0.5 * pow((y - t), 2);
+        std::cout << "target = " << t << " and output of NN = " << y << std::endl;
+        std::cout << "The error at " << i << " is " << errors.at(i) << std::endl;
+
+        // Derivative of the error for backpropagation
+        derivedErrors.at(i) = y - t;
+        std::cout << "The derived error at " << i << " is " << derivedErrors.at(i) << std::endl;
+
+        // Summing the squared errors
+        this->error += errors.at(i);
+    }
 
 }

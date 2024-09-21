@@ -59,7 +59,7 @@ void Matrix :: printToConsole(){
 double Matrix :: generateRandomNumber() {
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_real_distribution<> dis(-.1, .1);
+	std::uniform_real_distribution<> dis(-1, 1);
 
 	return dis(gen);
 }
