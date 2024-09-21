@@ -43,7 +43,7 @@ vector<int > topology= config["topology"];
 	string weightsFile = config["weightsFile"];
 	int epoch = config["epoch"];
 
-	NN* nn = new NN(topology,bias,2,3,1,learningRate,momentum);
+NN* nn = new NN(topology,learningRate,momentum);
 	vector<vector<double>> trainingData = utils::Misc::fetchData(trainingFile);
 	vector<vector<double>> labelData = utils::Misc::fetchData(labelsFile);
 
