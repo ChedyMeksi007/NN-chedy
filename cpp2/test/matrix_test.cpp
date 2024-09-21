@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "../include/matrix.hpp"
+#include "../include/utils/math.hpp"
 
 TEST( MatrixClass, Constructor ){
 	Matrix m{3,3,false};
@@ -67,5 +68,53 @@ TEST ( MatrixClass, Copy ) {
 			ASSERT_EQ(m.getValue(r,c),m_c->getValue(r,c));
 		}
 	}
+
+}
+
+TEST (MatrixClass, Multiplication ){
+
+	//same size Matrices
+	Matrix a{2,2,false};
+	Matrix b{2,2,false};
+	Matrix c{2,2,false};
+	Matrix e{2,2,false};
+
+
+	//
+	// |2 5| * |3 4| = |11 13|
+	// |1 0|   |1 1|   | 3 4 |
+	//
+	//
+	//
+
+
+	a.setValue(0,0,2);
+	a.setValue(0,1,5);
+	a.setValue(1,0,1);
+	a.setValue(1,1,0);
+
+	b.setValue(0,0,3);
+	b.setValue(0,1,4);
+	b.setValue(1,0,1);
+	b.setValue(1,1,1);
+
+	c.setValue(0,0,11);
+	c.setValue(0,1,13);
+	c.setValue(1,0,3);
+	c.setValue(1,1,4);
+
+	utils::Math::multiplyMatrix(&a,&b,&e);
+
+
+	for(int row = 0; row<2 ; row++){
+		for(int col = 0; col<2; col++){
+			ASSERT_EQ(e.getValue(row,col),c.getValue(row,col));
+		}
+	}
+
+}
+
+TEST (MatrixClass, Addition ) {
+
 
 }
