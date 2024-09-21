@@ -1,7 +1,5 @@
-
 #include <cstdlib>
 #include <fstream>
-#include <iostream>
 #include <iterator>
 #include <ostream>
 #include <strstream>
@@ -10,6 +8,7 @@
 #include <vector>
 
 
+#include "../include/main.hpp"
 #include "../include/nn.hpp"
 #include "../include/numberimage.hpp"
 #include "../include/dataset.hpp"
@@ -36,7 +35,8 @@ int main(int argc, char* argv[]){
 	auto config = json::parse(str);
 
 
-	vector<int > topology= config["topology"];
+vector<int > topology= config["topology"];
+	double bias = config["bias"];
 	double learningRate = config["learningRate"];
 	double momentum = config["momentum"];
 	string trainingFile = config["trainingFile"];
@@ -44,7 +44,7 @@ int main(int argc, char* argv[]){
 	string weightsFile = config["weightsFile"];
 	int epoch = config["epoch"];
 
-	NN* nn = new NN(topology,2,3,1,learningRate,momentum);
+	NN* nn = new NN(topology,learningRate,momentum);
 	vector<vector<double>> trainingData = utils::Misc::fetchData(trainingFile);
 	vector<vector<double>> labelData = utils::Misc::fetchData(labelsFile);
 
@@ -57,11 +57,9 @@ int main(int argc, char* argv[]){
 			nn->train(trainingData.at(i),labelData.at(i),learningRate,momentum);
 		}
 
-			cout << "Error " << nn->error << " epoch  : " << e << endl;
+			cout << "overall Error is " << nn->error  << endl;
 	}
 
 	cout << "Done Writing to " << weightsFile << endl;
 	nn->saveWeights(weightsFile);
-
-	return EXIT_SUCCESS;
 }

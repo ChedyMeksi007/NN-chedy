@@ -5,6 +5,7 @@
 #include "neuron.hpp"
 #include <vector>
 #define COST_MSE 1
+#define SUBTRACTION 2
 
 #include "matrix.hpp"
 #include "json.hpp"
@@ -133,7 +134,7 @@ class NN{
 		void loadWeights(string filename);
 
 		int topologySize;
-		int hiddenActivationType = RELU;
+		int hiddenActivationType = SIGM;
 		int outputActivationType = SIGM;
 		int costFunctionType = COST_MSE;
 
@@ -161,5 +162,6 @@ class NN{
 	 	* @param c Column index.
 	 	*/
 		void setErrorsMSE();
+		void setErrorsSUB();
 };
 #endif

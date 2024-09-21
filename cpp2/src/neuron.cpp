@@ -5,6 +5,9 @@ void Neuron :: setVal(double value){
 	this->value = value;
 	activate();
 	derive();
+	std :: cout << "value is " << this->value << std::endl;
+	std :: cout << "activated value is " << this->activatedValue << std::endl;
+	std :: cout << "derived value is " << this->derivedValue << std::endl;
 }
 
 void Neuron :: activate(){

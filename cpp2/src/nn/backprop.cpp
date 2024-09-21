@@ -21,7 +21,7 @@ void NN::backPropagation() {
             this->velocities.push_back(new Matrix(
                 this->weightMatrices[i]->getNumRows(),
                 this->weightMatrices[i]->getNumCols(),
-                false  
+                false
             ));
         }
     }
@@ -35,7 +35,7 @@ void NN::backPropagation() {
     for (int i = 0; i < this->topology.at(indexOutputLayer); i++) {
         double e = this->derivedErrors.at(i);
         double y = derivedValues->getValue(0, i);
-        double g = e * y * (1 - y); 
+        double g = e * y * (1 - y);
         gradients->setValue(0, i, g);
     }
 
@@ -59,7 +59,7 @@ void NN::backPropagation() {
         for (int c = 0; c < this->topology.at(indexOutputLayer); c++) {
             double originalValue = this->weightMatrices.at(indexOutputLayer - 1)->getValue(r, c);
             double deltaValue = deltaWeights->getValue(c, r);
- 
+
             double velocity = this->momentum * this->velocities.at(indexOutputLayer - 1)->getValue(r, c) +
                               this->learningRate * deltaValue;
             this->velocities.at(indexOutputLayer - 1)->setValue(r, c, velocity);
@@ -99,7 +99,7 @@ void NN::backPropagation() {
         if (i == 1) {
             zActivatedVals = this->layers.at(0)->matrixifyVals();
         } else {
-            zActivatedVals = this->layers.at(i - 1)->matrixifyActivatedVals();  
+            zActivatedVals = this->layers.at(i - 1)->matrixifyActivatedVals();
         }
 
         transposeHidden = zActivatedVals->transpose();
@@ -120,11 +120,11 @@ void NN::backPropagation() {
             for (int c = 0; c < tempNewWeights->getNumCols(); c++) {
                 double originalValue = this->weightMatrices.at(i - 1)->getValue(r, c);
                 double deltaValue = deltaWeights->getValue(r, c);
-   
+
                 double velocity = this->momentum * this->velocities.at(i - 1)->getValue(r, c) +
                                   this->learningRate * deltaValue;
                 this->velocities.at(i - 1)->setValue(r, c, velocity);
-        
+
                 tempNewWeights->setValue(r, c, originalValue - velocity);
             }
         }
@@ -152,4 +152,3 @@ void NN::backPropagation() {
         delete newWeights[i];
     }
 }
-
