@@ -1,0 +1,8 @@
+{
+	"topology" : [2,2,1],
+	"momentum" : 1.0,
+	"bias" : 1.0,
+	"testDataFile" : "/home/chedy/mpt-sose2024-mohamed-chedy-meksi/cpp2/data/mnist_test_data.csv",
+	"testLabelFile" : "/home/chedy/mpt-sose2024-mohamed-chedy-meksi/cpp2/data/mnist_test_labels.csv",
+	"weightsFile" : "/home/chedy/mpt-sose2024-mohamed-chedy-meksi/cpp2/data/weights_saved.json"
+}
