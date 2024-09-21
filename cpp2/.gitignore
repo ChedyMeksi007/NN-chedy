@@ -1,1 +1,10 @@
-data/
+#ignore everything
+*
+
+#but these directories
+!.gitignore
+!CMakeLists.txt
+!include/*
+!src/*
+!config/*
+!test/*
