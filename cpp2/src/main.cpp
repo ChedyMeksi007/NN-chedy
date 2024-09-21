@@ -43,7 +43,7 @@ vector<int > topology= config["topology"];
 	string weightsFile = config["weightsFile"];
 	int epoch = config["epoch"];
 
-NN* nn = new NN(topology,learningRate,momentum);
+	NN* nn = new NN(topology,learningRate,momentum);
 	vector<vector<double>> trainingData = utils::Misc::fetchData(trainingFile);
 	vector<vector<double>> labelData = utils::Misc::fetchData(labelsFile);
 
@@ -53,10 +53,10 @@ NN* nn = new NN(topology,learningRate,momentum);
 	for(int e = 0; e<epoch;e++){
 		cout << "Epoch : " << e << endl;
 		for(int i = 0; i< trainingData.size();i++){
-			nn->train(trainingData.at(i),labelData.at(i),bias,learningRate,momentum);
+			nn->train(trainingData.at(i),labelData.at(i),learningRate,momentum);
 		}
 
-			cout << "Error " << nn->error << " epoch  : " << e << endl;
+			cout << "Error " << nn->error  << endl;
 	}
 
 	cout << "Done Writing to " << weightsFile << endl;
